@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+
+* {
+  font-weight: 700;
+  font-style: normal;
+  font-family: 'Nunito', serif;
+  color: #000000;
+  font-size: 1em;
+  line-height: 1.2;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  text-overflow: ellipsis;
+}
+/* Create Grid System */
+.site {
+  display: grid;
+  grid-template-columns:
+    [pad-left-start] minmax(0px, 10%) [pad-left-end] minmax(375px, 80%)
+    [pad-right-start] minmax(0px, 10%) [pad-right-end];
+  grid-template-rows: [title-start] 10rem [main-content] auto [page-bottom];
+  background: linear-gradient(
+    180deg,
+    rgba(147, 97, 255, 0.7) 0%,
+    rgba(119, 34, 0, 0.5) 100%
+  );
+  height: 100%;
+  width: 100%;
+}
+
+#title {
+  grid-column: pad-left-start / pad-right-end;
+  grid-row: title-start / main-content;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+#title h1 {
+  margin: auto;
+  font-size: 3em;
+}
+
+#main-content {
+  grid-column: pad-left-end / pad-right-start;
+  grid-row: main-content / page-bottom;
+  padding: 10px 7px 10px 7px;
+  /* background: linear-gradient(
+    180deg,
+    rgba(147, 97, 255, 0.7) 0%,
+    rgba(153, 47, 5, 0.5) 100%
+  ); */
+  overflow: hidden;
+}
+
+/* Set a style for the buttons*/
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Set a hover effect for the button*/
+button:hover {
+  opacity: 0.8;
+}
+
+/* Set extra style for the cancel button*/
+.container {
+  padding: 16px;
+}
+
+.email,
+.password {
+  position: relative;
+}
+
+.email i,
+.password i {
+  position: absolute;
+  left: 15px;
+  top: 40px;
+  color: gray;
+}
+
+.item {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  height: 150px;
+  box-sizing: border-box;
+  background: linear-gradient(90deg, #ffb8cc 0%, hsl(343, 67%, 35%) 100%);
+  overflow: hidden;
+  border-radius: 50px;
+  background-color: salmon;
+  padding: 10px;
+}
+
+.text,
+.btns {
+  overflow: hidden;
+  opacity: 60%;
+  border-radius: 75px;
+  margin: 10px;
+  display: inherit;
+  flex: 3;
+}
+
+.text p,
+.option {
+  margin: auto 30px;
+  font-size: 2em;
+}
+
+.btns {
+  flex: 1;
+  background-color: green;
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+}
+
+.option {
+  flex: 5;
+  margin: auto 10px;
+}
+.opt-2 {
+  flex: 1;
+  border-radius: 2em;
+  height: 100%;
+  width: 100%;
+  background-color: red;
+  padding: auto;
+}
+.opt-3 {
+  flex: 2;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+@media screen {
+}

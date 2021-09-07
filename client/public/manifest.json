@@ -1,0 +1,6 @@
+{
+  "short_name": "To-Do",
+  "name": "Create React App To Track To-Do List Items",
+  "start_url": ".",
+  "display": "standalone"
+}
