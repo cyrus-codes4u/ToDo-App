@@ -1,11 +1,5 @@
 import { getLocalItems, setLocalItems } from '../../utils/actions'
-import {
-  ADD_ITEM,
-  UPDATE_ITEM,
-  DELETE_ITEM,
-  GET_ITEM,
-  STATE_EDIT,
-} from '../types'
+import { ADD_ITEM, UPDATE_ITEM, DELETE_ITEM, STATE_EDIT } from '../types'
 
 const initialState = localStorage.items ? getLocalItems() : []
 
@@ -22,9 +16,6 @@ export default function items(state = initialState, action) {
       current[ind] = payload
       setLocalItems(current)
       return [...current]
-    // case GET_ITEM:
-    //   const specificItem = state.items.find((item) => item.id !== payload.id)
-    //   return specificItem
     case DELETE_ITEM:
       const filtered = state.filter((item) => item.id !== payload.id)
       setLocalItems(filtered)

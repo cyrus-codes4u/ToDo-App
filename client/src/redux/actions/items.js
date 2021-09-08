@@ -1,10 +1,4 @@
-import {
-  UPDATE_ITEM,
-  DELETE_ITEM,
-  ADD_ITEM,
-  GET_ITEM,
-  STATE_EDIT,
-} from '../types'
+import { UPDATE_ITEM, DELETE_ITEM, ADD_ITEM, STATE_EDIT } from '../types'
 import { v4 } from 'uuid'
 
 export const addItem =
@@ -27,13 +21,6 @@ export const addItem =
 export const removeItem = (item) => (dispatch) => {
   dispatch({
     type: DELETE_ITEM,
-    payload: item,
-  })
-}
-
-export const getItem = (item) => (dispatch) => {
-  dispatch({
-    type: GET_ITEM,
     payload: item,
   })
 }
