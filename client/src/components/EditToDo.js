@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { getItem, addItem } from '../redux/actions/items'
+import { addItem } from '../redux/actions/items'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-function EditToDo({ id, getItem, addItem }) {
-  const [formData, setFormData] = useState(getItem())
+function EditToDo({ item, addItem }) {
+  const [formData, setFormData] = useState(item)
 
   const submit = (e) => {
     e.preventDefault()
@@ -27,8 +27,7 @@ function EditToDo({ id, getItem, addItem }) {
 }
 
 EditToDo.propTypes = {
-  getItem: PropTypes.func.isRequired,
   addItem: PropTypes.func.isRequired,
 }
 
-export default connect(null, { addItem, getItem })(EditToDo)
+export default connect(null, { addItem })(EditToDo)

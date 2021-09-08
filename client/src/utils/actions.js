@@ -30,18 +30,18 @@ export const logout = () => {
   localStorage.removeItem('user')
 }
 
-function setLocalItems(content) {
-  const JSONobj = JSON.stringify({ items: content })
+export function setLocalItems(content) {
+  const JSONobj = JSON.stringify(content)
   localStorage.setItem('items', JSONobj)
 }
 
-export function addLocalItem(toDo) {
-  const updatedItems = getLocalItems()
-  const newItem = { id: v4(), text: toDo }
-  updatedItems.push(newItem)
-  console.log(updatedItems, newItem)
-  setLocalItems(updatedItems)
-}
+// export function addLocalItem(toDo) {
+//   const updatedItems = getLocalItems()
+//   const newItem = { id: v4(), text: toDo }
+//   updatedItems.push(newItem)
+//   console.log(updatedItems, newItem)
+//   setLocalItems(updatedItems)
+// }
 
 export function getLocalItems() {
   const reference = JSON.parse(localStorage.getItem('items'))

@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { removeItem } from '../redux/actions/items'
+import { editItem } from '../redux/actions/items'
 import { connect } from 'react-redux'
 
 import ToDoItem from './ToDoItem'
 
 function ToDoList({ items }) {
-  const list = items.map((item) => {
+  const [listItems, setListItems] = useState(items)
+  useEffect(() => {
+    setListItems(items)
+    return () => {}
+  }, [items])
+
+  const list = listItems.map((item) => {
     return (
       <li key={item.id}>
         <ToDoItem item={item} />

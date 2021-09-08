@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { deleteLocalItem, getLocalItems } from '../utils/actions'
+// import { deleteLocalItem, getLocalItems } from '../utils/actions'
 import CreateToDo from './CreateToDo'
-import ToDoItem from './ToDoItem'
 import ToDoList from './ToDoList'
 
 // const sample = {
@@ -22,35 +21,10 @@ import ToDoList from './ToDoList'
 function ListPage() {
   //   const [searchQuery, setSearchQuery] = useState('')
   const [add, setAdd] = useState(true)
-  const [items, setItems] = useState(getLocalItems())
-  const [list, setList] = useState()
 
   //   const updateSearch = async (e) => {
   //     setSearchQuery(e.target.value)
   //   }
-
-  //   useEffect(() => {
-  //     async function filterItems() {
-  //       try {
-  //         if (searchQuery !== '') {
-  //           setItems((items) =>
-  //             items.filter((item) => {
-  //               const iText = item.text.toLowerCase()
-  //               return iText.includes(searchQuery.toLowerCase())
-  //             })
-  //           )
-  //         } else {
-  //           setItems(getLocalItems())
-  //         }
-  //       } catch (err) {
-  //         console.error(err.message)
-  //       }
-  //     }
-  //     filterItems()
-  //     return () => {
-  //       setItems(getLocalItems())
-  //     }
-  //   }, [searchQuery])
 
   return (
     <React.Fragment>
