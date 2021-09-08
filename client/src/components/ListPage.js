@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-// import { deleteLocalItem, getLocalItems } from '../utils/actions'
 import CreateToDo from './CreateToDo'
+import SearchBar from './SearchBar'
 import ToDoList from './ToDoList'
 
 // const sample = {
@@ -19,29 +19,13 @@ import ToDoList from './ToDoList'
 // localStorage.setItem('items', JSON.stringify(sample))
 
 function ListPage() {
-  //   const [searchQuery, setSearchQuery] = useState('')
   const [add, setAdd] = useState(true)
-
-  //   const updateSearch = async (e) => {
-  //     setSearchQuery(e.target.value)
-  //   }
 
   return (
     <React.Fragment>
-      {/* <div className='options'>
-        <div className='option'>
-          <form>
-            <label htmlFor='searchbar' />
-            <input
-              type='text'
-              id='searchbar'
-              placeholder='Search'
-              name='searchbar'
-              value={searchQuery}
-              onInput={updateSearch}
-            />
-          </form>
-        </div> 
+      <div className='options'>
+        <SearchBar />
+        {/*
         <button className='option opt-2' onClick={() => setAdd((add) => !add)}>
           <i className='fa fa-plus icon'></i>
         </button>
@@ -54,8 +38,8 @@ function ListPage() {
           }}
         >
           logout
-        </button>
-      </div>*/}
+        </button>*/}
+      </div>
       {add ? <CreateToDo /> : null}
       <ToDoList />
     </React.Fragment>

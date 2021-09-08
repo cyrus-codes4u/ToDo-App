@@ -26,14 +26,14 @@ function ToDoList({ items }) {
 }
 
 const mapStateToProps = (state) => {
-  const { items, searchQuery } = state
+  const { items, search } = state
   let filtered = items
-  if (searchQuery && searchQuery.length > 0) {
+  if (search && search.length > 0) {
     filtered = items.filter((item) => {
-      return item.text.toLowerCase().includes(searchQuery)
+      const text = item.text.toLowerCase()
+      return text.includes(search)
     })
   }
-
   return {
     items: filtered,
   }
