@@ -1,22 +1,23 @@
 import React, { useState } from 'react'
-import { updateLocalItem, addLocalItem } from '../utils/actions'
+import { getItem, addItem } from '../redux/actions/items'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
-function CreateToDo({ item = { text: '' } }) {
-  const [newItem, setNewItem] = useState(item)
+function CreateToDo({ getItem, addItem }) {
+  const [formData, setFormData] = useState({ text: '' })
 
   const submit = (e) => {
     e.preventDefault()
-    !!item.id ? updateLocalItem(newItem) : addLocalItem(newItem.text)
+    addItem(formData)
   }
-  const updateItem = ({ target }) => {
-    setNewItem({ ...newItem, [target.name]: target.value })
+  const updateForm = ({ target }) => {
+    setFormData({ ...formData, [target.name]: target.value })
   }
 
   return (
     <form className='item' onSubmit={submit}>
       <div className='text'>
-        <input name='text' value={newItem.text} onInput={updateItem} />
-        {newItem.id}
+        <input name='text' value={formData.text} onInput={updateForm} />
       </div>
       <div className='btns'>
         <button type='submit'>Save</button>
@@ -25,4 +26,9 @@ function CreateToDo({ item = { text: '' } }) {
   )
 }
 
-export default CreateToDo
+CreateToDo.propTypes = {
+  getItem: PropTypes.func.isRequired,
+  addItem: PropTypes.func.isRequired,
+}
+
+export default connect(null, { addItem, getItem })(CreateToDo)
