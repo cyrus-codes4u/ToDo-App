@@ -3,7 +3,7 @@ import { getItem, addItem } from '../redux/actions/items'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-function CreateToDo({ getItem, addItem }) {
+function CreateToDo({ addItem }) {
   const [formData, setFormData] = useState({ text: '' })
 
   const submit = (e) => {
@@ -27,7 +27,6 @@ function CreateToDo({ getItem, addItem }) {
 }
 
 CreateToDo.propTypes = {
-  getItem: PropTypes.func.isRequired,
   addItem: PropTypes.func.isRequired,
 }
 
