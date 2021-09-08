@@ -1,49 +1,35 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import CreateToDo from './CreateToDo'
 import SearchBar from './SearchBar'
 import ToDoList from './ToDoList'
 
-// const sample = {
-//   items: [
-//     {
-//       text: 'filler 1',
-//       id: 1,
-//     },
-//     {
-//       text: 'filler12',
-//       id: 2343,
-//     },
-//   ],
-// }
-
-// localStorage.setItem('items', JSON.stringify(sample))
-
-function ListPage() {
-  const [add, setAdd] = useState(true)
+function ListPage({ user }) {
+  const [add, setAdd] = useState(false)
+  if (!user) {
+    return <Redirect to='/login' />
+  }
 
   return (
     <React.Fragment>
       <div className='options'>
         <SearchBar />
-        {/*
-        <button className='option opt-2' onClick={() => setAdd((add) => !add)}>
+        <button className='option opt-2' onClick={() => setAdd(true)}>
           <i className='fa fa-plus icon'></i>
         </button>
-        <button
-          className='option opt-3'
-          onClick={() => {
-            if (localStorage.user) {
-              localStorage.removeItem('user')
-            }
-          }}
-        >
+        <button className='option opt-3' onClick={() => console.log('clicked')}>
           logout
-        </button>*/}
+        </button>
       </div>
-      {add ? <CreateToDo /> : null}
+      {add ? <CreateToDo finish={() => setAdd(false)} /> : null}
       <ToDoList />
     </React.Fragment>
   )
 }
 
-export default ListPage
+const mapStateToProps = (state) => ({
+  user: state.login.user,
+})
+
+export default connect(mapStateToProps, {})(ListPage)
