@@ -6,18 +6,14 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 
 const Input = styled.input`
-  position: relative;
   border: 1px solid
     ${(props) => (!!props.valid && props.valid.length > 0 ? 'red' : 'white')};
-  width: 100%;
-  padding: 12px 40px;
-  margin: 8px 0;
-  box-sizing: border-box;
 `
 const Alert = styled.div`
   display: ${(props) => props.message && props.message.length > 0};
   color: red;
   height: 1em;
+  margin-bottom: 1em;
 `
 
 function Login({ login, loading, error }) {
@@ -31,9 +27,9 @@ function Login({ login, loading, error }) {
   })
 
   // Redirect if logged in
-  if (localStorage.user) {
-    return <Redirect to='/list' />
-  }
+  // if (localStorage.user) {
+  //   return <Redirect to='/list' />
+  // }
 
   //Validation functions
   const emailIsValid = (value) => {
@@ -81,7 +77,7 @@ function Login({ login, loading, error }) {
   }
 
   return (
-    <form className='container' autoComplete='off' onSubmit={submitForm}>
+    <form className='login-form' autoComplete='off' onSubmit={submitForm}>
       <div className='email'>
         <label htmlFor='email'>Email</label>
         <Input
@@ -118,6 +114,7 @@ function Login({ login, loading, error }) {
       <button
         type='submit'
         className='btn btn-primary'
+        id='login-button'
         disabled={loading || validationError.password || validationError.email}
       >
         Login

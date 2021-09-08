@@ -10,14 +10,16 @@ function SearchBar({ updateSearchQuery }) {
   return (
     <div className='option'>
       <form>
-        <label htmlFor='searchbar' />
-        <input
-          type='text'
-          id='searchbar'
-          placeholder='Search'
-          name='searchbar'
-          onInput={updateSearch}
-        />
+        <div className='search'>
+          <label htmlFor='searchbar' />
+          <input
+            type='text'
+            placeholder='Search'
+            name='searchbar'
+            onInput={updateSearch}
+          />
+          <i className='fa fa-search icon'></i>
+        </div>{' '}
       </form>
     </div>
   )

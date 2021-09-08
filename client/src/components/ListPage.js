@@ -16,10 +16,10 @@ function ListPage({ user, logout }) {
     <React.Fragment>
       <div className='options'>
         <SearchBar />
-        <button className='option opt-2' onClick={() => setAdd(true)}>
+        <button className='btn option opt-2' onClick={() => setAdd(true)}>
           <i className='fa fa-plus icon'></i>
         </button>
-        <button className='option opt-3' onClick={() => logout}>
+        <button className='btn option opt-2' onClick={() => logout}>
           logout
         </button>
       </div>

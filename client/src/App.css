@@ -4,13 +4,14 @@
   font-weight: 700;
   font-style: normal;
   font-family: 'Nunito', serif;
-  color: #000000;
   font-size: 1em;
   line-height: 1.2;
   word-wrap: break-word;
   word-break: break-word;
   white-space: normal;
   text-overflow: ellipsis;
+  overflow: auto;
+  box-sizing: border-box;
 }
 /* Create Grid System */
 .site {
@@ -22,7 +23,7 @@
   background: linear-gradient(
     180deg,
     rgba(147, 97, 255, 0.7) 0%,
-    rgba(119, 34, 0, 0.5) 100%
+    rgba(119, 34, 0, 0.7) 100%
   );
   height: 100%;
   width: 100%;
@@ -39,86 +40,154 @@
 #title h1 {
   margin: auto;
   font-size: 3em;
+  color: white;
 }
 
 #main-content {
   grid-column: pad-left-end / pad-right-start;
   grid-row: main-content / page-bottom;
   padding: 10px 7px 10px 7px;
-  /* background: linear-gradient(
-    180deg,
-    rgba(147, 97, 255, 0.7) 0%,
-    rgba(153, 47, 5, 0.5) 100%
-  ); */
   overflow: hidden;
 }
 
-/* Set a style for the buttons*/
-button {
-  background-color: #4caf50;
+/*** 
+*  Login Page 
+***/
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Set a style for the button*/
+#login-button {
+  background-color: #5fb59b;
   color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
+  border-radius: 3rem;
   border: none;
   cursor: pointer;
+  padding: 5px 20px;
+  align-self: center;
+  font-size: 2em;
+}
+
+/* Set a disabled effect for the button*/
+button:disabled {
+  opacity: 0.5;
+}
+
+/***  
+* Style input fields with icons
+***/
+input {
+  position: relative;
+  border: none;
   width: 100%;
-}
-
-/* Set a hover effect for the button*/
-button:hover {
-  opacity: 0.8;
-}
-
-/* Set extra style for the cancel button*/
-.container {
-  padding: 16px;
+  padding: 12px 40px;
+  margin: 8px 0;
+  box-sizing: border-box;
 }
 
 .email,
-.password {
+.password,
+.search {
   position: relative;
 }
 
 .email i,
-.password i {
+.password i,
+.search i {
   position: absolute;
   left: 15px;
   top: 40px;
   color: gray;
 }
 
+.search i {
+  top: 20px;
+}
+
+/***  
+* To Do Items
+***/
+/* Size and layout each item */
+#to-do-list {
+  overflow: scroll;
+}
 .item {
-  flex-shrink: 0;
+  flex-shrink: 1;
   display: flex;
-  flex-direction: row;
   height: 150px;
   box-sizing: border-box;
   background: linear-gradient(90deg, #ffb8cc 0%, hsl(343, 67%, 35%) 100%);
   overflow: hidden;
   border-radius: 50px;
-  background-color: salmon;
   padding: 10px;
+  margin: 0.5em 0;
+}
+/* Items list display */
+ul {
+  list-style-type: none;
+  padding-left: 0;
 }
 
-.text,
-.btns {
+/* Text display */
+.text {
   overflow: hidden;
-  opacity: 60%;
+  /* background: linear-gradient(
+    270deg,
+    hsl(259, 100%, 69%) 10%,
+    hsl(343, 67%, 35%) 100%
+  );
+   */
   border-radius: 75px;
   margin: 10px;
   display: inherit;
   flex: 3;
 }
 
-.text p,
-.option {
+.text p {
   margin: auto 30px;
-  font-size: 2em;
+  font-size: 1.3em;
+  padding: 1em 0;
+  color: white;
 }
 
 .btns {
-  flex: 1;
-  background-color: green;
+  flex: 0 0 50px;
+  margin: 10px 20px;
+  display: inherit;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: visible;
+  background-color: transparent;
+}
+
+.btns-create {
+  flex: 0 0 50px;
+  margin: 10px 20px;
+  display: inherit;
+  flex-direction: column;
+  justify-content: center;
+  overflow: visible;
+  background-color: transparent;
+}
+.btns-create button {
+  background-color: #5fb59b;
+}
+
+.item .btn,
+.opt-2 {
+  flex: 0 0 50px;
+  border-radius: 50%;
+  border: none;
+  color: white;
+}
+
+.delete {
+  background: #861a39;
+}
+.edit {
+  background: #9361ff;
 }
 
 .options {
@@ -130,22 +199,16 @@ button:hover {
 .option {
   flex: 5;
   margin: auto 10px;
-}
-.opt-2 {
-  flex: 1;
-  border-radius: 2em;
-  height: 100%;
+  border: none;
   width: 100%;
-  background-color: red;
-  padding: auto;
-}
-.opt-3 {
-  flex: 2;
+  cursor: pointer;
 }
 
-ul {
-  list-style-type: none;
-  padding-left: 0;
+.opt-2 {
+  flex: 0 0 50px;
+  border-radius: 50%;
+  height: 50px;
+  background-color: #5fb59b;
 }
 
 @media screen {

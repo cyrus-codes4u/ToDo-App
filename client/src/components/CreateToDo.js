@@ -27,8 +27,10 @@ function CreateToDo({ addItem, finish }) {
           onInput={updateForm}
         />
       </div>
-      <div className='btns'>
-        <button type='submit'>Save</button>
+      <div className='btns-create'>
+        <button className='btn save' type='submit'>
+          <i className='fa fa-check icon'></i>
+        </button>
       </div>
     </form>
   )

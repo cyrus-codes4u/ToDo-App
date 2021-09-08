@@ -28,11 +28,19 @@ function ToDoItem({ item, editItem, removeItem }) {
         <p>{currentItem.text}</p>
       </div>
       <div className='btns'>
-        <button type='button' onClick={() => removeItem(item)}>
-          Delete
+        <button
+          className='btn delete'
+          type='button'
+          onClick={() => removeItem(item)}
+        >
+          <i className='fa fa-trash icon'></i>
         </button>
-        <button type='button' onClick={() => editItem(item)}>
-          Edit
+        <button
+          className='btn edit'
+          type='button'
+          onClick={() => editItem(item)}
+        >
+          <i className='fa fa-pencil icon'></i>
         </button>
       </div>
     </div>
