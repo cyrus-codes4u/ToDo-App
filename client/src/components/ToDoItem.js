@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { removeItem, editItem, getItem } from '../redux/actions/items'
+import { removeItem, editItem } from '../redux/actions/items'
 import EditToDo from './EditToDo'
 
 /***
@@ -38,7 +38,5 @@ function ToDoItem({ item, editItem, removeItem }) {
     </div>
   )
 }
-
-const mapStateToProps = (state) => {}
 
 export default connect(null, { removeItem, editItem })(ToDoItem)

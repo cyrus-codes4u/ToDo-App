@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { editItem } from '../redux/actions/items'
 import { connect } from 'react-redux'
 
 import ToDoItem from './ToDoItem'

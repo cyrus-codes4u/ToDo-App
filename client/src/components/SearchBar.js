@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { updateSearchQuery } from '../redux/actions/search'
 
 function SearchBar({ updateSearchQuery }) {
-  //   const [formData, setformData] = useState('')
-
   const updateSearch = ({ target }) => {
     // setformData(target.value)
     updateSearchQuery(target.value)
@@ -18,7 +16,6 @@ function SearchBar({ updateSearchQuery }) {
           id='searchbar'
           placeholder='Search'
           name='searchbar'
-          //   value={formData}
           onInput={updateSearch}
         />
       </form>

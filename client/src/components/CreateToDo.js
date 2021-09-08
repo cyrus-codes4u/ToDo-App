@@ -19,7 +19,13 @@ function CreateToDo({ addItem, finish }) {
   return (
     <form className='item' onSubmit={submit}>
       <div className='text'>
-        <input name='text' value={formData.text} onInput={updateForm} />
+        <input
+          name='text'
+          minLength='1'
+          maxLength='25'
+          value={formData.text}
+          onInput={updateForm}
+        />
       </div>
       <div className='btns'>
         <button type='submit'>Save</button>
