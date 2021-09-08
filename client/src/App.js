@@ -22,10 +22,10 @@ function App() {
 
           <section id='main-content'>
             <Switch>
-              {/* <Route exact path='/login' component={Login} /> */}
+              <Route exact path='/login' component={Login} />
               <Route exact path='/list' component={ListPage} />
               <Route path='/'>
-                <Redirect to='/list' />
+                <Redirect to='/login' />
               </Route>
             </Switch>
           </section>

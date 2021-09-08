@@ -1,48 +1,67 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import { login } from '../utils/actions'
+import { login } from '../redux/actions/login'
 import EmailValidator from 'email-validator'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 
 const Input = styled.input`
   position: relative;
-  border: 1px solid ${(props) => (props.valid.length > 0 ? 'red' : 'white')};
+  border: 1px solid
+    ${(props) =>
+      props.validationError && props.validationError.length > 0
+        ? 'red'
+        : 'white'};
   width: 100%;
   padding: 12px 40px;
   margin: 8px 0;
   box-sizing: border-box;
 `
 const Alert = styled.div`
-  display: ${(props) => props.message.length > 0};
+  display: ${(props) => props.message && props.message.length > 0};
   height: 1em;
 `
 
-function Login() {
+function Login({ login }) {
   const [formState, setFormState] = useState({
     email: '',
     password: '',
   })
-  const [valid, setValid] = useState({ email: '', password: '' })
+  const [validationError, setValidationError] = useState({
+    email: '',
+    password: '',
+  })
 
-  const updateForm = async (e) => {
+  // Redirect if logged in
+  if (localStorage.user) {
+    return <Redirect to='/list' />
+  }
+
+  const updateForm = (e) => {
     const { value, name } = e.target
-    setValid({ password: '', email: '' })
+    setValidationError({ password: '', email: '' })
     if (name === 'email') {
       if (!EmailValidator.validate(value)) {
-        setValid({ ...valid, email: 'Email is invalid' })
+        setValidationError({ ...validationError, email: 'Email is invalid' })
         // store error message to display
       }
       if (value.length > 50) {
-        setValid({ ...valid, email: 'Email is too long' })
+        setValidationError({ ...validationError, email: 'Email is too long' })
       }
     }
     if (name === 'password') {
       if (value.length > 16) {
-        setValid({ ...valid, password: 'Password is too many characters' })
+        setValidationError({
+          ...validationError,
+          password: 'Password is too many characters',
+        })
         // store error message to display
       }
       if (value.length < 4) {
-        setValid({ ...valid, password: 'Password is too few characters' })
+        setValidationError({
+          ...validationError,
+          password: 'Password is too few characters',
+        })
       }
     }
     setFormState({ ...formState, [name]: value })
@@ -51,10 +70,6 @@ function Login() {
   const submitForm = async (e) => {
     e.preventDefault()
     login(formState.email, formState.password)
-  }
-  // Redirect if logged in
-  if (localStorage.user) {
-    return <Redirect to='/list' />
   }
 
   return (
@@ -68,12 +83,12 @@ function Login() {
           value={formState.email}
           onChange={updateForm}
           maxLength='50'
-          valid={valid.email}
+          valid={validationError.email}
           required
         />
         <i className='fa fa-user icon'></i>
       </div>
-      <Alert message={valid.email}>{valid.email}</Alert>
+      <Alert message={validationError.email}>{validationError.email}</Alert>
       <div className='password'>
         <label htmlFor='password'>Password</label>
         <Input
@@ -84,15 +99,22 @@ function Login() {
           maxLength='16'
           value={formState.password}
           onChange={updateForm}
-          valid={valid.password}
+          valid={validationError.password}
           required
         />
         <i className='fa fa-lock fa-lg'></i>
       </div>
-      <Alert message={valid.password}>{valid.password}</Alert>
-      <input type='submit' className='btn btn-primary' value='Login' />
+      <Alert message={validationError.password}>
+        {validationError.password}
+      </Alert>
+      <button type='submit' className='btn btn-primary'>
+        Login
+      </button>
+      {/* <Alert message={validationError.submit}>
+        {validationError.submit}
+      </Alert> */}
     </form>
   )
 }
 
-export default Login
+export default connect()(Login)
