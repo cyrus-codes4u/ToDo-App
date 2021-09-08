@@ -44,7 +44,7 @@ export function addLocalItem(toDo) {
 }
 
 export function getLocalItems() {
-  const reference = JSON.parse(localStorage.getItem('items')).items
+  const reference = JSON.parse(localStorage.getItem('items'))
   return [...reference]
 }
 

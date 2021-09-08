@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { removeItem, editItem, getItem } from '../redux/actions/items'
+import { removeItem, editItem } from '../redux/actions/items'
 import EditToDo from './EditToDo'
 
 /***
@@ -48,10 +48,10 @@ function ToDoItem({ item, editItem, removeItem }) {
         <p>{currentItem.text}</p>
       </div>
       <div className='btns'>
-        <button type='button' onClick={removeItem}>
+        <button type='button' onClick={() => removeItem(currentItem)}>
           Delete
         </button>
-        <button type='button' onClick={() => editItem()}>
+        <button type='button' onClick={() => editItem(currentItem)}>
           Edit
         </button>
       </div>
