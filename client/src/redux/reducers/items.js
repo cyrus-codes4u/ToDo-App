@@ -3,7 +3,7 @@ import {
   UPDATE_ITEM,
   DELETE_ITEM,
   GET_ITEM,
-  STATUS_EDIT,
+  STATE_EDIT,
 } from '../types'
 
 const initialState = {
@@ -17,10 +17,10 @@ export default function items(state = initialState, action) {
     case ADD_ITEM:
       return {
         ...state,
-        items: [state.items, ...payload],
+        items: [state.items, { ...payload }],
         loading: false,
       }
-    case STATUS_EDIT:
+    case STATE_EDIT:
     case UPDATE_ITEM:
       const current = { ...state.items }
       const ind = current.findIndex((item) => item.id === payload.id)

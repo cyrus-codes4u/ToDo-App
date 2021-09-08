@@ -5,13 +5,13 @@ import {
   GET_ITEM,
   STATE_EDIT,
 } from '../types'
-import uuid from 'uuid'
+import { v4 } from 'uuid'
 
 export const addItem =
   (item, edit = false) =>
   (dispatch) => {
     if (!edit) {
-      const id = uuid.v4()
+      const id = v4()
       dispatch({
         type: ADD_ITEM,
         payload: { text: item.text, id, edit: false },

@@ -1,11 +1,10 @@
-export default {
-  LOGIN: 'LOGIN',
-  LOGOUT: 'LOGOUT',
-  LOGIN_FAIL: 'LOGIN_FAIL',
-  LOADING: 'LOADING',
-  UPDATE_ITEM: 'UPDATE_ITEM',
-  ADD_ITEM: 'ADD_ITEM',
-  DELETE_ITEM: 'DELETE_ITEM',
-  GET_ITEM: 'GET_ITEM',
-  SEARCH_QUERY: 'SEARCH_QUERY',
-}
+export const LOGIN = 'LOGIN'
+export const LOGOUT = 'LOGOUT'
+export const LOGIN_FAIL = 'LOGIN_FAIL'
+export const LOADING = 'LOADING'
+export const UPDATE_ITEM = 'UPDATE_ITEM'
+export const ADD_ITEM = 'ADD_ITEM'
+export const DELETE_ITEM = 'DELETE_ITEM'
+export const GET_ITEM = 'GET_ITEM'
+export const STATE_EDIT = 'STATE_EDIT'
+export const SEARCH_QUERY = 'SEARCH_QUERY'
