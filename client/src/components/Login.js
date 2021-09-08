@@ -8,10 +8,7 @@ import { connect } from 'react-redux'
 const Input = styled.input`
   position: relative;
   border: 1px solid
-    ${(props) =>
-      props.validationError && props.validationError.length > 0
-        ? 'red'
-        : 'white'};
+    ${(props) => (!!props.valid && props.valid.length > 0 ? 'red' : 'white')};
   width: 100%;
   padding: 12px 40px;
   margin: 8px 0;
@@ -22,14 +19,14 @@ const Alert = styled.div`
   height: 1em;
 `
 
-function Login({ login }) {
+function Login({ login, loading }) {
   const [formState, setFormState] = useState({
     email: '',
     password: '',
   })
   const [validationError, setValidationError] = useState({
-    email: '',
-    password: '',
+    email: null,
+    password: null,
   })
 
   // Redirect if logged in
@@ -37,43 +34,54 @@ function Login({ login }) {
     return <Redirect to='/list' />
   }
 
+  //Validation functions
+  const emailIsValid = (value) => {
+    setValidationError({ ...validationError, email: null })
+    if (!EmailValidator.validate(value)) {
+      setValidationError({ ...validationError, email: 'Email is invalid' })
+      // store error message to display
+    }
+    if (value.length > 50) {
+      setValidationError({ ...validationError, email: 'Email is too long' })
+    }
+  }
+  const pwordIsValid = (value) => {
+    setValidationError({ ...validationError, password: null })
+    if (value.length > 16) {
+      setValidationError({
+        ...validationError,
+        password: 'Password is too many characters',
+      })
+      // store error message to display
+    }
+    if (value.length < 4) {
+      setValidationError({
+        ...validationError,
+        password: 'Password is too few characters',
+      })
+    }
+  }
+  //Validate fields and update formState
   const updateForm = (e) => {
     const { value, name } = e.target
-    setValidationError({ password: '', email: '' })
+
     if (name === 'email') {
-      if (!EmailValidator.validate(value)) {
-        setValidationError({ ...validationError, email: 'Email is invalid' })
-        // store error message to display
-      }
-      if (value.length > 50) {
-        setValidationError({ ...validationError, email: 'Email is too long' })
-      }
+      emailIsValid(value)
     }
     if (name === 'password') {
-      if (value.length > 16) {
-        setValidationError({
-          ...validationError,
-          password: 'Password is too many characters',
-        })
-        // store error message to display
-      }
-      if (value.length < 4) {
-        setValidationError({
-          ...validationError,
-          password: 'Password is too few characters',
-        })
-      }
+      pwordIsValid(value)
     }
     setFormState({ ...formState, [name]: value })
   }
 
   const submitForm = async (e) => {
     e.preventDefault()
+    console.log('submit')
     login(formState.email, formState.password)
   }
 
   return (
-    <form className='container' onSubmit={submitForm}>
+    <form className='container' autoComplete='off' onSubmit={submitForm}>
       <div className='email'>
         <label htmlFor='email'>Email</label>
         <Input
@@ -107,7 +115,11 @@ function Login({ login }) {
       <Alert message={validationError.password}>
         {validationError.password}
       </Alert>
-      <button type='submit' className='btn btn-primary'>
+      <button
+        type='submit'
+        className='btn btn-primary'
+        disabled={loading || validationError.password || validationError.email}
+      >
         Login
       </button>
       {/* <Alert message={validationError.submit}>
@@ -117,4 +129,8 @@ function Login({ login }) {
   )
 }
 
-export default connect()(Login)
+const mapStateToProps = (state) => ({
+  loading: state.login.loading,
+})
+
+export default connect(mapStateToProps, { login })(Login)
