@@ -16,10 +16,11 @@ const Input = styled.input`
 `
 const Alert = styled.div`
   display: ${(props) => props.message && props.message.length > 0};
+  color: red;
   height: 1em;
 `
 
-function Login({ login, loading }) {
+function Login({ login, loading, error }) {
   const [formState, setFormState] = useState({
     email: '',
     password: '',
@@ -76,7 +77,6 @@ function Login({ login, loading }) {
 
   const submitForm = async (e) => {
     e.preventDefault()
-    console.log('submit')
     login(formState.email, formState.password)
   }
 
@@ -122,15 +122,14 @@ function Login({ login, loading }) {
       >
         Login
       </button>
-      {/* <Alert message={validationError.submit}>
-        {validationError.submit}
-      </Alert> */}
+      <Alert message={error}>{error}</Alert>
     </form>
   )
 }
 
 const mapStateToProps = (state) => ({
   loading: state.login.loading,
+  error: state.login.error,
 })
 
 export default connect(mapStateToProps, { login })(Login)
